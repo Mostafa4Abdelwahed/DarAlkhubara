@@ -8,6 +8,8 @@ import Agent from "./Pages/Agents/Agent"
 import Estate from "./Pages/Estates/Estate"
 import Contact from "./Pages/Contact/Contact"
 import Estates from "./Pages/Estates/Estates"
+import LayoutDash from './Dashboard/Components/Layout'
+import Dashboard from "./Dashboard/Dashboard"
 
 function App() {
 
@@ -24,6 +26,9 @@ function App() {
           <Route path="/agents/:id" element={<Agent />} />
           <Route path="/contact" element={<Contact />} />
           {/* <Route path="*" element={<NoPage />} /> */}
+        </Route>
+        <Route path="/dashboard" element={<LayoutDash />}>
+          <Route index element={<Dashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>
