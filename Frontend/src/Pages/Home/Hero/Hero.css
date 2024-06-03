@@ -1,0 +1,9 @@
+.hero-section{
+    background-image: url("/src/assets/hero-img.png");
+    background-position: center;
+    background-size: contain;
+}
+.chakra-select__icon-wrapper.css-iohxn1{
+    right: inherit !important;
+    left: 0.5rem !important;
+}
