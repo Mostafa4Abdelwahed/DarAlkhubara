@@ -7,7 +7,7 @@ const FilterBox = () => {
     const [queries, setQueries] = useState({});
     const goToFilterPage = ()=>{
         navigate({
-            pathname: "/filter",
+            pathname: "/estates",
             search: `?${createSearchParams(queries)}`,
         })
     }

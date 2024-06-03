@@ -5,7 +5,7 @@ import Articles from "./Pages/Articles/Articles"
 import Article from "./Pages/Articles/Article"
 import Agents from "./Pages/Agents/Agents"
 import Agent from "./Pages/Agents/Agent"
-import Estate from "./Pages/Estate/Estate"
+import Estate from "./Pages/Estates/Estate"
 import Contact from "./Pages/Contact/Contact"
 import Estates from "./Pages/Estates/Estates"
 
