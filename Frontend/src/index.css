@@ -5,3 +5,6 @@
 *{
   font-family: "Tajawal", sans-serif;
 }
+.SideLink.active{
+  background: #319795;
+}

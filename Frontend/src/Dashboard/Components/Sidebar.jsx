@@ -1,39 +1,95 @@
-import { Link, NavLink } from "react-router-dom"
+import { Fragment, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom"
+import { Button, Menu, MenuButton, MenuItem, MenuList, WrapItem } from '@chakra-ui/react'
 import { IoHomeOutline, IoSettingsOutline } from "react-icons/io5";
 import { MdOutlineVilla } from "react-icons/md";
 import { LiaUsersCogSolid } from "react-icons/lia";
 import { PiArticleNyTimesLight, PiCity } from "react-icons/pi";
 import { IoIosLogOut } from "react-icons/io";
+import Container from "./../../Ui/Container";
 
 
 const Sidebar = () => {
-  return (
-    <div  className="fixed -right-[100%] lg:right-0 w-[300px] h-full bg-primary-800 text-white">
-        <ul className="mt-16 flex flex-col gap-1.5">
-            <li>
-                <NavLink style={isActive => ({backgroundColor: isActive ? "#AA8453" : "transparent"})} className="flex items-center shadow-md py-2 px-3 transition-all hover:bg-primary-100 gap-2 text-lg" to="/"><IoHomeOutline />الصفحة الرئيسية</NavLink>
-            </li>
-            <li>
-                <Link className="flex items-center py-2 px-3 transition-all hover:bg-primary-100 gap-2 text-lg" to="/"><MdOutlineVilla />الوحدات</Link>
-            </li>
-            <li>
-                <Link className="flex items-center py-2 px-3 transition-all hover:bg-primary-100 gap-2 text-lg" to="/"><LiaUsersCogSolid />المكاتب</Link>
-            </li>
-            <li>
-                <Link className="flex items-center py-2 px-3 transition-all hover:bg-primary-100 gap-2 text-lg" to="/"><PiArticleNyTimesLight />المقالات</Link>
-            </li>
-            <li>
-                <Link className="flex items-center py-2 px-3 transition-all hover:bg-primary-100 gap-2 text-lg" to="/"><PiCity />المدن</Link>
-            </li>
-            <li>
-                <Link className="flex items-center py-2 px-3 transition-all hover:bg-primary-100 gap-2 text-lg" to="/"><IoSettingsOutline />الاعدادات</Link>
-            </li>
-            <li>
-                <Link className="flex items-center py-2 px-3 transition-all hover:bg-primary-100 gap-2 text-lg" to="/"><IoIosLogOut />الاعدادات</Link>
-            </li>
-        </ul>
-    </div>
-  )
+    const [open, setOpen] = useState(false);
+    const navigate = useNavigate();
+
+    const logout = () => {
+    }
+    return (
+        <Fragment>
+            <div className={`fixed z-50 lg:right-0 w-[220px] h-full bg-teal-950 text-white ${open ? "right-0" : "-right-[100%]"}`}>
+                <ul className="mt-16  mb-auto flex flex-col gap-1.5">
+                    <li>
+                        <Link className="SideLink flex items-center shadow-md py-2 px-3 transition-all hover:bg-teal-600 gap-2 text-lg" to="/dashboard"><IoHomeOutline />الصفحة الرئيسية</Link>
+                    </li>
+                    <li>
+                        <NavLink className="SideLink flex items-center py-2 px-3 transition-all hover:bg-teal-600 gap-2 text-lg" to="/dashboard/estates"><MdOutlineVilla />الوحدات</NavLink>
+                    </li>
+                    <li>
+                        <NavLink className="SideLink flex items-center py-2 px-3 transition-all hover:bg-teal-600 gap-2 text-lg" to="/dashboard/agents"><LiaUsersCogSolid />المكاتب</NavLink>
+                    </li>
+                    <li>
+                        <NavLink className="SideLink flex items-center py-2 px-3 transition-all hover:bg-teal-600 gap-2 text-lg" to="/dashboard/articles"><PiArticleNyTimesLight />المقالات</NavLink>
+                    </li>
+                    <li>
+                        <NavLink className="SideLink flex items-center py-2 px-3 transition-all hover:bg-teal-600 gap-2 text-lg" to="/dashboard/cities"><PiCity />المدن</NavLink>
+                    </li>
+                    <li>
+                        <NavLink className="SideLink flex items-center py-2 px-3 transition-all hover:bg-teal-600 gap-2 text-lg" to="/dashboard/settings"><IoSettingsOutline />الاعدادات</NavLink>
+                    </li>
+                    <li>
+                        <span onClick={logout} className="SideLink cursor-pointer flex items-center py-2 px-3 transition-all hover:bg-teal-600 gap-2 text-lg"><IoIosLogOut />تسجيل الخروج</span>
+                    </li>
+                </ul>
+                    <a href="/" target="_blank" className="cursor-pointer absolute bottom-5 left-5 right-5 text-center flex justify-center items-center py-2 px-3 transition-all rounded-md bg-teal-600 gap-2 text-lg"><IoIosLogOut />عرض الموقع</a>
+            </div>
+            <header className="bg-teal-900 z-50 fixed left-0 right-0">
+                <Container>
+                    <div className="mx-auto flex h-16 max-w-screen-xl items-center justify-between gap-8 px-4 sm:px-6 lg:px-2">
+                        <Link to="/dashboard" className="text-white font-bold text-2xl">
+                            لوحة التحكم
+                        </Link>
+
+                        <div className="flex items-center justify-end md:justify-between">
+
+                            <div className="flex items-center gap-4">
+                                <div className="sm:flex sm:gap-4">
+                                    <Menu>
+                                        <WrapItem>
+                                            <MenuButton>
+                                                <img src="https://bit.ly/dan-abramov" className='h-10 w-10 rounded-full' />
+                                            </MenuButton>
+                                        </WrapItem>
+                                        <MenuList>
+                                            <MenuItem onClick={() => { navigate("/dashboard/settings") }}>الاعدادات</MenuItem>
+                                            <MenuItem onClick={logout}>تسجيل خروج</MenuItem>
+                                        </MenuList>
+                                    </Menu>
+                                </div>
+
+                                <button onClick={() => { setOpen(!open) }}
+                                    className="block rounded bg-teal-600 p-2.5 text-white transition hover:text-white/75 md:hidden"
+                                >
+                                    <span className="sr-only">Toggle menu</span>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        className="h-5 w-5"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                    >
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </Container>
+            </header>
+
+        </Fragment>
+    )
 }
 
 export default Sidebar
